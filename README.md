@@ -17,7 +17,33 @@ The CLI uses node with the following packages:
 - some others I probably forgot
 
 ## Version History
-### This is a brief synopsis of the changes in each version.  Please feel free to contact me if you'd like to contribute.
+This is a brief synopsis of the changes in each version.  Please feel free to contact me if you'd like to contribute.
 
+### Version 0.0.1 - Initial Commit
+This version contains the following features
+- Full command line features, including --help for a listing of commands (thanks yargs!)
+- An initial set of commands including:
+-- list
+---flows
+---integrations
+--extract
+---connections
+---exports
+---flows
+---imports
+---integrations
+---scripts
+--create
+---connection
+---export
+---flow
+---import
+---integration
+---script
+--copy
+---flow
 
+###Comments
+-copy flow has only been succesfully tested with FTP connections.  There are definiately some challenges with other connection types.  Need to see which connection types will copy easily.
+-The copy feature is meant to support a specific promotion methodology, which searches for connections based on name in the destination system to use for the flow being copied.
 
