@@ -22,26 +22,26 @@ This is a brief synopsis of the changes in each version.  Please feel free to co
 ### Version 0.0.1 - Initial Commit
 This version contains the following features
 - Full command line features, including --help for a listing of commands (thanks yargs!)
-- An initial set of commands including:
+- An initial set of commands including
 -- list
----flows
----integrations
---extract
----connections
----exports
----flows
----imports
----integrations
----scripts
---create
----connection
----export
----flow
----import
----integration
----script
---copy
----flow
+---f lows
+--- integrations
+-- extract
+--- connections
+--- exports
+--- flows
+--- imports
+---i ntegrations
+--- scripts
+-- create
+--- connection
+--- export
+--- flow
+--- import
+--- integration
+--- script
+-- copy
+--- flow
 
 ###Comments
 -copy flow has only been succesfully tested with FTP connections.  There are definiately some challenges with other connection types.  Need to see which connection types will copy easily.
