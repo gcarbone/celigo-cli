@@ -1,0 +1,24 @@
+node . list integrations d7214a78fdde4b48aedad948a5113f52
+node . list integrations d7214a78fdde4b48aedad948a5113f52 6140ad1384c1574dd0e1734b
+node . extract integrations d7214a78fdde4b48aedad948a5113f52
+node . extract integrations d7214a78fdde4b48aedad948a5113f52 6140ad1384c1574dd0e1734b
+node . extract exports d7214a78fdde4b48aedad948a5113f52
+node . extract exports d7214a78fdde4b48aedad948a5113f52 61852f599c662b67f61c050e
+node . extract imports d7214a78fdde4b48aedad948a5113f52
+node . extract imports d7214a78fdde4b48aedad948a5113f52 615c7939469fbe2372a3ae2c
+node . extract scripts d7214a78fdde4b48aedad948a5113f52
+node . extract scripts d7214a78fdde4b48aedad948a5113f52 61858ee3cc388857f1968c1e
+node . list flows d7214a78fdde4b48aedad948a5113f52
+node . list flows d7214a78fdde4b48aedad948a5113f52 6140ad1384c1574dd0e1734b
+node . extract connections d7214a78fdde4b48aedad948a5113f52
+node . extract connections d7214a78fdde4b48aedad948a5113f52 61854013cc388857f195ac0c
+node . extract flows d7214a78fdde4b48aedad948a5113f52
+node . extract flows d7214a78fdde4b48aedad948a5113f52 6140ad1384c1574dd0e1734b
+node . extract flows d7214a78fdde4b48aedad948a5113f52 -f 619e745d192a3b561f77d2a9
+node . create integration d7214a78fdde4b48aedad948a5113f52 'Test Flow 3'
+node . create flow d7214a78fdde4b48aedad948a5113f52 '{"name":"testflow1","disabled":true,"_integrationId":"6140ad1384c1574dd0e1734b","skipRetries":false,"pageProcessors":[{"responseMapping":{"fields":[{"extract":"data","generate":"lookupRecord"}],"lists":[]},"type":"export","_exportId":"6140b28aa8e43363b5430add"},{"responseMapping":{"fields":[],"lists":[]},"type":"import","_importId":"6140b47b532bf372eb6d5b6b"}],"pageGenerators":[{"_exportId":"6140ad70f7a6367d2bd9c7ec","skipRetries":false}],"autoResolveMatchingTraceKeys":true}'
+node . create import d7214a78fdde4b48aedad948a5113f52 '{"name":"Send to S3","_connectionId":"615c787c60ea376b8f275db0","apiIdentifier":"ifbc9de928","hooks":{"postSubmit":{"_scriptId":"615c79c18c503b258f3b5419","function":"postSubmit"},"postMap":{"_scriptId":"615cb8d9afead9329553eb6e","function":"postMap"}},"oneToMany":false,"blob":true,"sandbox":false,"file":{"fileName":"test-file-gcarbone"},"s3":{"region":"us-east-2","bucket":"gcarbone-test","fileKey":"test-file-gcarbone"},"adaptorType":"S3Import"}'
+node . create export d7214a78fdde4b48aedad948a5113f52 '{"name":"SafeMed Excel Sample 2","_connectionId":"61852ef55613ae277950a77b","apiIdentifier":"e9deee8482","asynchronous":true,"sandbox":false,"sampleData":"Customer Name,DME Name,Date of Service,PO Number,Sales Order Number,Memo,Tracking Number,Return Reason,First Name,Last Name,Phone,Address,Address 2,City,State,Zip,Shipping Method,Item 1,Item 1 Product ID,Item 1 Quantity,Item 1 Quauntity Damaged,Item 2,Item 2 Product ID,Item 2 Quantity,Item 2 Quauntity Damaged\nTest Customer,,9/7/21,,,,,,TEST,CUSTOMER,1233211234,123 Main St,,Randolph,MA,02378,Ground,A4565 - ISO Preferred Shoulder Immobilizing Sling - LEFT OR RIGHT,ISO-SH323,1,,,,,\n","ftp":{"directoryPath":"/GeneCarbone/safemed","fileNameStartsWith":"SafeMed"},"file":{"output":"records","skipDelete":true,"type":"xlsx","xlsx":{"hasHeaderRow":true}},"adaptorType":"FTPExport"}'
+node . create connection d7214a78fdde4b48aedad948a5113f52 '{"name":"Test Conn 1","type":"rest","rest":{"mediaType":"json","authType":"basic","basicAuth":"devnull"},"ignoreExisting":false,"ignoreMissing":false,"oneToMany":false,"sandbox":false,"http":{"relativeURI":["/"],"method":["POST"],"body":["{{{jsonSerialize record}}}"],"batchSize":1,"requestMediaType":"json","successMediaType":"json","errorMediaType":"json","strictHandlebarEvaluation":true,"formType":"rest"},"adaptorType":"HTTPImport"}'
+node . create script d7214a78fdde4b48aedad948a5113f52 '{"name":"scriptTest1","content":"function transform (options) {}"}'
+

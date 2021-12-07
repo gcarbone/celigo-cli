@@ -1,0 +1,19 @@
+{
+  "name": "celigo-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cli.js",
+  "scripts": {
+    "test": "test"
+  },
+  "bin": {
+    "celigo": "./cli.js"
+  },
+  "author": "Gene Carbone",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "columnify": "^1.5.4",
+    "yargs": "^17.2.1"
+  }
+}
