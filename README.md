@@ -23,27 +23,27 @@ This is a brief synopsis of the changes in each version.  Please feel free to co
 This version contains the following features
 - Full command line features, including --help for a listing of commands (thanks yargs!)
 - An initial set of commands including
--- list
----f lows
---- integrations
--- extract
---- connections
---- exports
---- flows
---- imports
----i ntegrations
---- scripts
--- create
---- connection
---- export
---- flow
---- import
---- integration
---- script
--- copy
---- flow
+  - list
+    - flows
+    - integrations
+  - extract
+    - connections
+    - exports
+    - flows
+    - integrations
+    - scripts
+  - create
+    - connection
+    - export
+    - flow
+    - import
+    - integration
+    - script
+  - copy
+    - flow
 
-###Comments
--copy flow has only been succesfully tested with FTP connections.  There are definiately some challenges with other connection types.  Need to see which connection types will copy easily.
--The copy feature is meant to support a specific promotion methodology, which searches for connections based on name in the destination system to use for the flow being copied.
+### Comments
+
+- Copy flow has only been succesfully tested with FTP connections.  There are definiately some challenges with other connection types.  Need to see which connection types will copy easily.
+- The copy feature is meant to support a specific promotion methodology, which searches for connections based on name in the destination system to use for the flow being copied.
 
