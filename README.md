@@ -1,3 +1,5 @@
+<img height="150" src="https://www.gainsight.com/wp-content/uploads/2020/07/Celigo-logo-1.png">
+
 # Celigo CLI 
 
 There was a need I saw to augment the deployment automation capabilities of the popular iPaaS platform, integrator.io by Celigo.  This project is an attempt to fill that need in a way that may support larger corporate organizations that require a N-tiered architecture and strict separation of production and non-production services.
