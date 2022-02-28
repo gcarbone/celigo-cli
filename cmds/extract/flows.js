@@ -15,7 +15,7 @@ exports.builder={
         demandOption: false
     },
     id: {
-        alias: 'i',
+        alias: 'f',
         describe: 'Flow Id to extract',
         demandOption: false
     },
@@ -27,12 +27,12 @@ exports.builder={
 }
 exports.handler = async function(args){
             
-            if (args.id){
+            if (args.integration){
                 await io.getFlows(args.source,args.integration)
                 .then(res => {
                     console.log(JSON.stringify(res));
                 });
-            } else if (args.flowid) {
+            } else if (args.id) {
                 await io.getFlow(args.source,args.id)
                 .then(res => {
                     console.log(JSON.stringify(res));
