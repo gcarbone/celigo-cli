@@ -39,6 +39,7 @@ Planned scope for this project includes command line access to your integrator.i
 - Aliases are saved between CLI calls, no need to keep your API key in your copy buffer!
 - Set an alias for your API key with the command`celigo set alias myalias 0123456789`
 - Key is stored in .env file in the application folder
+- Use the alias anywhere you would use an API key (i.e. `celigo list integrations myalias`)
 - To unset an alias pass a blank string as the value (i.e. `celigo set alias myalias ''` )
 
 
