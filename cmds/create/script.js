@@ -1,3 +1,4 @@
+require('dotenv').config();
 var celigo = require('../../celigo/IntegratorApi.js');
 var io = new celigo.IntegratorApi();
 var columnify = require('columnify');
@@ -17,12 +18,17 @@ exports.builder={
     }
 }
 exports.handler = async function(args){
-            console.log('Creating integration...');
-            
-            await io.createScript(args.source,args.definition)
-            .then(res => {
-                console.log(`Created script id: ${res._id}`);
-            });
+    if (process.env['io.'+args.source] != undefined) 
+        args.source = process.env['io.'+args.source];
+    else 
+        throw `invalid alias '${args.source}'`;
+    
+    console.log('Creating integration...');
+    
+    await io.createScript(args.source,args.definition)
+    .then(res => {
+        console.log(`Created script id: ${res._id}`);
+    });
             
             
 }

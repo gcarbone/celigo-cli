@@ -1,3 +1,4 @@
+require('dotenv').config();
 var celigo = require('../../celigo/IntegratorApi.js');
 var io = new celigo.IntegratorApi();
 var columnify = require('columnify');
@@ -17,21 +18,26 @@ exports.builder={
     }
 }
 exports.handler = async function(args){
-            console.log('Retreiving flows:');
-            if (args.integration){
-            await io.getFlows(args.source,args.integration)
-            .then(res => {
+    if (process.env['io.'+args.source] != undefined) 
+        args.source = process.env['io.'+args.source];
+    else 
+        throw `invalid alias '${args.source}'`;
+    
+    console.log('Retreiving flows:');
+    if (args.integration){
+    await io.getFlows(args.source,args.integration)
+    .then(res => {
+        console.log(columnify(res,{
+            columns: ['name','_id']
+        }));
+    });
+    } else {
+    await io.getFlows(args.source)
+        .then(res => {
                 console.log(columnify(res,{
-                    columns: ['name','_id']
-                }));
-            });
-            } else {
-            await io.getFlows(args.source)
-                .then(res => {
-                        console.log(columnify(res,{
-                        columns: ['name','_id','_integrationId']
-                    }));
-            });
-            }  
+                columns: ['name','_id','_integrationId']
+            }));
+    });
+    }  
 }
 

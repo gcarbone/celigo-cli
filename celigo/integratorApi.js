@@ -1,7 +1,7 @@
 const axios = require('axios');
 const proxyUri = 'http://localhost:8080/';
 const baseUri='https://api.integrator.io/v1/';
-const token='d7214a78fdde4b48aedad948a5113f52';
+
 
 
 class IntegratorApi {
@@ -12,6 +12,25 @@ class IntegratorApi {
             url: baseUri + 'integrations/' + intkey,
             method: 'get',
             headers: {'Authorization': 'Bearer ' + apikey}
+        })
+        .then(res => {
+
+            return res.data;
+        })
+        .catch(err => {
+            console.log('in error');
+            //console.log(err);
+            throw err;
+        });
+        
+    }
+    //does not work
+    async getAssistants(apikey,assetkey = ''){
+        
+        return axios({
+            url: 'https://integrator.io/api/ui/assistants',
+            method: 'get'
+            //headers: {'Authorization': 'Bearer ' + apikey}
         })
         .then(res => {
 

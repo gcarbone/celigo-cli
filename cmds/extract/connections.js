@@ -1,3 +1,4 @@
+require('dotenv').config();
 var celigo = require('../../celigo/IntegratorApi.js');
 var io = new celigo.IntegratorApi();
 
@@ -21,6 +22,11 @@ exports.builder={
     }
 }
 exports.handler = async function(args){
+    if (process.env['io.'+args.source] != undefined) 
+        args.source = process.env['io.'+args.source];
+    else 
+        throw `invalid alias '${args.source}'`;
+    
     if (args.id){
         await io.getConnections(args.source,args.id)
         .then(res => {

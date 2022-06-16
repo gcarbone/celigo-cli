@@ -1,3 +1,4 @@
+require('dotenv').config();
 var celigo = require('../../celigo/IntegratorApi.js');
 var io = new celigo.IntegratorApi();
 var columnify = require('columnify');
@@ -33,6 +34,16 @@ exports.builder={
     }
 }
 exports.handler = async function(args){
+    if (process.env['io.'+args.source] != undefined) 
+        args.source = process.env['io.'+args.source];
+    else 
+        throw `invalid alias '${args.source}'`;
+    if (process.env['io.'+args.destination] != undefined) 
+        args.destination = process.env['io.'+args.destination];
+    else 
+        throw `invalid alias '${args.destination}'`;
+
+    if (args.destination.length !== 32) args.destination = process.env['io.'+args.destination];
             console.log('Copying flow...');
             
             await io.getFlow(args.source,args.id)

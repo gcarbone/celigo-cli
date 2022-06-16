@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+
 var celigo = require('./celigo/IntegratorApi.js');
 var io = new celigo.IntegratorApi();
 const yargs = require("yargs");
 var columnify = require('columnify')
+/*
 var argv = yargs
 .version('0.0.1')
 .usage('usage: $0 <command>')
@@ -146,9 +148,9 @@ var argv = yargs
     }
 })
 .help();
-*/
+
 
 argv.parse();
 
-
+*/
 

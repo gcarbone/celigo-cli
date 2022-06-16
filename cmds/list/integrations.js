@@ -1,3 +1,4 @@
+require('dotenv').config();
 var celigo = require('../../celigo/IntegratorApi.js');
 var io = new celigo.IntegratorApi();
 var columnify = require('columnify');
@@ -17,6 +18,12 @@ exports.builder={
     }
 }
 exports.handler = async function(args){
+    
+    if (process.env['io.'+args.source] != undefined) 
+        args.source = process.env['io.'+args.source];
+    else 
+        throw `invalid alias '${args.source}'`;
+
     if (args.integration){
     console.log('Retreiving integrations:');
     await io.getIntegrations(args.source,args.integration)
