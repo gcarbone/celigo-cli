@@ -44,6 +44,25 @@ class IntegratorApi {
         
     }
 
+    async getUsers(apikey,intkey=''){
+        var uri = 'ashares/';
+        
+        return axios({
+            url: baseUri + uri,
+            method: 'get',
+            headers: {'Authorization': 'Bearer ' + apikey}
+        })
+        .then(res => {
+
+            return res.data;
+        })
+        .catch(err => {
+            console.log('in error');
+            //console.log(err);
+            throw err;
+        });
+    }
+
     async getFlows(apikey,intkey=''){
         var uri = 'flows/';
         if (intkey) uri = 'integrations/' + intkey + "/flows";

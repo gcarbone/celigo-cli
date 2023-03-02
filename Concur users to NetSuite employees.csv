@@ -1,0 +1,7 @@
+Source System,Source Object,Source Field,Transform,Dest System,Dest Object,Dest Field
+concurexpense,user,FirstName,"{\"source\":\"FirstName\"; \"dest\":\"firstname\"; \"type\":\"field\"}",NetSuite,employee,firstname
+concurexpense,user,LastName,"{\"source\":\"LastName\"; \"dest\":\"lastname\"; \"type\":\"field\"}",NetSuite,employee,lastname
+concurexpense,user,LoginID,"{\"source\":\"LoginID\"; \"dest\":\"custentity1264\"; \"type\":\"field\"}",NetSuite,employee,custentity1264
+concurexpense,user,CellPhoneNumber,"{\"source\":\"CellPhoneNumber\"; \"dest\":\"mobilephone\"; \"type\":\"field\"}",NetSuite,employee,mobilephone
+concurexpense,user,,"{\"source\":\"1\"; \"dest\":\"currency\"; \"type\":\"static\"}",NetSuite,employee,currency
+concurexpense,user,,"{\"source\":\"3\"; \"dest\":\"subsidiary\"; \"type\":\"static\"}",NetSuite,employee,subsidiary
