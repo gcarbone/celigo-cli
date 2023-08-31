@@ -43,7 +43,7 @@ Planned scope for this project includes command line access to your integrator.i
 - To unset an alias pass a blank string as the value (i.e. `celigo set alias myalias ''` )
 
 
-### Notes on the Copy function
+### Notes on the Copy functi
 
 - Copy flow has only been succesfully tested with FTP connections.  There are definiately some challenges with other connection types.  Need to see which connection types will copy easily.
 - The copy feature is meant to support a specific promotion methodology, which searches for connections based on name in the destination system to use for the flow being copied.

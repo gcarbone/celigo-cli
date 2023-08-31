@@ -28,7 +28,7 @@ exports.handler = async function (args) {
   await io.getFlow(args.source, args.id).then(async function (flow) {
     var csv = {
       header:
-        "Source System,Source Object,Source Field,Transform,Dest System,Dest Object,Dest Field\n",
+        "Source System,Source Object,Source,Value,Transform Type,Dest System,Dest Object,Dest Field\n",
       rows: [],
     };
     console.log(flow);
@@ -40,11 +40,14 @@ exports.handler = async function (args) {
     const mapping = getMapping(flowmap.destinations[0]);
     csv.rows = mapping.map((xform, index)=>{
         const src = xform.type === 'field'?xform.source:'';
+        const val = xform.type !== 'field'?xform.source:'';
+        const xform_col = xform.type === 'field'?'Field':xform.type === 'static'?'Static':'Formula';
         
         const row = sourceinfo.system + ',' + 
             sourceinfo.object + ',' + 
             src + ',' + 
-            '"' + JSON.stringify(xform).replace(/(")/gs,'\\$1').replace(/(,)/gs,'; ') + '",' + 
+            val + ',' +
+            xform_col + ',' + 
             destinfo.system + ',' + 
             destinfo.object + ',' + 
             xform.dest;

@@ -14,7 +14,9 @@
   "dependencies": {
     "axios": "^0.24.0",
     "columnify": "^1.5.4",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.0.0",
+    "parse-link-header": "^2.0.0",
     "yargs": "^17.2.1"
   }
 }

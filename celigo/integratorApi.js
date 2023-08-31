@@ -1,4 +1,5 @@
 const axios = require('axios');
+const parseLink = require('parse-link-header');
 const proxyUri = 'http://localhost:8080/';
 const baseUri='https://api.integrator.io/v1/';
 
@@ -10,6 +11,68 @@ class IntegratorApi {
         
         return axios({
             url: baseUri + 'integrations/' + intkey,
+            method: 'get',
+            headers: {'Authorization': 'Bearer ' + apikey}
+        })
+        .then(res => {
+
+            return res.data;
+        })
+        .catch(err => {
+            console.log('in error');
+            //console.log(err);
+            throw err;
+        });
+        
+    }
+
+    async getJobs(apikey,type = '',before = '',since=''){
+        var query = '';
+        if (type != '') query += 'type=' + type + '&';
+        if (since != '') query += 'createdAt_gte=' + since + '&';
+        if (since != '') query += 'createdAt_lte=' + before + '&';
+        if (query != '') query = '?' + query;
+        return axios({
+            url: baseUri + 'jobs' + query,
+            method: 'get',
+            headers: {'Authorization': 'Bearer ' + apikey}
+        })
+        .then(res => {
+
+            return res.data;
+        })
+        .catch(err => {
+            console.log('in error');
+            //console.log(err);
+            throw err;
+        });
+        
+    }
+
+    async getJobStepsByFlowJobId(apikey,flowJobId){
+
+        return axios({
+            url: baseUri + 'jobs?_flowJobId=' + flowJobId,
+            method: 'get',
+            headers: {'Authorization': 'Bearer ' + apikey}
+        })
+        .then(res => {
+
+            return res.data;
+        })
+        .catch(err => {
+            console.log('in error');
+            //console.log(err);
+            throw err;
+        });
+        
+    }
+
+
+    async getIntegrationErrors(apikey,intkey = ''){
+        
+        return axios({
+            url: baseUri + 'integrations/' + intkey + '/errors' ,
             method: 'get',
             headers: {'Authorization': 'Bearer ' + apikey}
         })
@@ -64,22 +127,32 @@ class IntegratorApi {
     }
 
     async getFlows(apikey,intkey=''){
+        var flows = [];
+        var firstpass = true;
         var uri = 'flows/';
         if (intkey) uri = 'integrations/' + intkey + "/flows";
-        return axios({
-            url: baseUri + uri,
-            method: 'get',
-            headers: {'Authorization': 'Bearer ' + apikey}
-        })
-        .then(res => {
-
-            return res.data;
-        })
-        .catch(err => {
-            console.log('in error');
-            //console.log(err);
-            throw err;
-        });
+        var currenturl = baseUri + uri;
+        while (firstpass | currenturl != ''){
+            await axios({
+                url: currenturl,
+                method: 'get',
+                headers: {'Authorization': 'Bearer ' + apikey}
+            })
+            .then(res => {
+                console.log('in getFlows');
+                firstpass = false;
+                const parsedLink = parseLink(res.headers.link);               
+                currenturl = parsedLink.next?.url ? parsedLink.next.url : '';
+                console.log(currenturl + '\n');
+                flows = flows.concat(res.data);
+            })
+            .catch(err => {
+                console.log('in error');
+                currenturl = '';
+                throw err;
+            });
+        }
+        return flows;
     }
 
     async getFlowByName(apikey,name){
@@ -118,21 +191,33 @@ class IntegratorApi {
     }
 
     async getExports(apikey,exportid=''){
-        return axios({
-            url: baseUri + 'exports/' + exportid,
-            method: 'get',
-            headers: {'Authorization': 'Bearer ' + apikey}
-        })
-        .then(res => {
-
-            return res.data;
-        })
-        .catch(err => {
-            console.log('in error');
-            //console.log(err);
-            throw err;
-        });
+        var exports = [];
+        var firstpass = true;
+        var currenturl = baseUri + 'exports/' + exportid;
+        while (firstpass | currenturl != ''){
+            await axios({
+                url: currenturl,
+                method: 'get',
+                headers: {'Authorization': 'Bearer ' + apikey}
+            })
+            .then(res => {
+                console.log('in getExports');
+                firstpass = false;
+                const parsedLink = parseLink(res.headers.link);               
+                currenturl = parsedLink.next?.url ? parsedLink.next.url : '';
+                console.log(currenturl + '\n');
+                exports = exports.concat(res.data);
+            })
+            .catch(err => {
+                console.log('in error');
+                currenturl = '';
+                throw err;
+            });
+        };
+        return exports;
     }
+    
+    
 
     async getExportByName(apikey,name){
         return axios({
@@ -169,20 +254,30 @@ class IntegratorApi {
     }
 
     async getImports(apikey,importid=''){
-        return axios({
-            url: baseUri + 'imports/' + importid,
-            method: 'get',
-            headers: {'Authorization': 'Bearer ' + apikey}
-        })
-        .then(res => {
-
-            return res.data;
-        })
-        .catch(err => {
-            console.log('in error');
-            //console.log(err);
-            throw err;
-        });
+        var imports = [];
+        var firstpass = true;
+        var currenturl = baseUri + 'imports/' + importid;
+        while (firstpass | currenturl != ''){
+            await axios({
+                url: currenturl,
+                method: 'get',
+                headers: {'Authorization': 'Bearer ' + apikey}
+            })
+            .then(res => {
+                console.log('in getImports');
+                firstpass = false;
+                const parsedLink = parseLink(res.headers.link);               
+                currenturl = parsedLink.next?.url ? parsedLink.next.url : '';
+                console.log(currenturl + '\n');
+                imports = imports.concat(res.data);
+            })
+            .catch(err => {
+                console.log('in error');
+                currenturl = '';
+                throw err;
+            });
+        };
+        return imports;
     }
 
     async getConnections(apikey,connid=''){
