@@ -139,11 +139,16 @@ class IntegratorApi {
                 headers: {'Authorization': 'Bearer ' + apikey}
             })
             .then(res => {
-                console.log('in getFlows');
+                //console.log('in getFlows');
                 firstpass = false;
-                const parsedLink = parseLink(res.headers.link);               
-                currenturl = parsedLink.next?.url ? parsedLink.next.url : '';
-                console.log(currenturl + '\n');
+                //console.log(res.headers);
+                if (res.headers.link) {
+                    const parsedLink = parseLink(res.headers.link);               
+                    currenturl = parsedLink.next?.url ? parsedLink.next.url : '';
+                    console.log(currenturl + '\n');
+                } else {
+                    currenturl = '';
+                }
                 flows = flows.concat(res.data);
             })
             .catch(err => {
